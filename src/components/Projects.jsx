@@ -3,11 +3,7 @@ import { Search, Filter } from 'lucide-react';
 import { projects } from '../data/mockData';
 import ProjectCard from './ProjectCard';
 
-interface ProjectsProps {
-  onEnquire: (projectId: string) => void;
-}
-
-const Projects: React.FC<ProjectsProps> = ({ onEnquire }) => {
+const Projects = ({ onEnquire }) => {
   const [searchTerm, setSearchTerm] = useState('');
   const [statusFilter, setStatusFilter] = useState('all');
 

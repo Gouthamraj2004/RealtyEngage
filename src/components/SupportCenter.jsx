@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { MessageCircle, AlertTriangle, Lightbulb, Send, Clock, CheckCircle, AlertCircle } from 'lucide-react';
 import { feedback } from '../data/mockData';
 
-const SupportCenter: React.FC = () => {
+const SupportCenter = () => {
   const [activeTab, setActiveTab] = useState('submit');
   const [formData, setFormData] = useState({
     name: '',
@@ -12,20 +12,20 @@ const SupportCenter: React.FC = () => {
     message: ''
   });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     alert('Your message has been submitted successfully!');
     setFormData({ name: '', email: '', type: 'feedback', subject: '', message: '' });
   };
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+  const handleChange = (e) => {
     setFormData(prev => ({
       ...prev,
       [e.target.name]: e.target.value
     }));
   };
 
-  const getTypeIcon = (type: string) => {
+  const getTypeIcon = (type) => {
     switch (type) {
       case 'feedback':
         return <MessageCircle className="h-4 w-4" />;
@@ -38,7 +38,7 @@ const SupportCenter: React.FC = () => {
     }
   };
 
-  const getTypeColor = (type: string) => {
+  const getTypeColor = (type) => {
     switch (type) {
       case 'feedback':
         return 'bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200';
@@ -51,7 +51,7 @@ const SupportCenter: React.FC = () => {
     }
   };
 
-  const getStatusIcon = (status: string) => {
+  const getStatusIcon = (status) => {
     switch (status) {
       case 'resolved':
         return <CheckCircle className="h-4 w-4 text-green-600" />;
@@ -64,7 +64,7 @@ const SupportCenter: React.FC = () => {
     }
   };
 
-  const getPriorityColor = (priority: string) => {
+  const getPriorityColor = (priority) => {
     switch (priority) {
       case 'high':
         return 'bg-red-100 dark:bg-red-900 text-red-800 dark:text-red-200';

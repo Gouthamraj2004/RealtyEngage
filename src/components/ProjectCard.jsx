@@ -1,13 +1,7 @@
 import React from 'react';
 import { MapPin, Calendar, CheckCircle, Clock, AlertCircle } from 'lucide-react';
-import { Project } from '../types';
 
-interface ProjectCardProps {
-  project: Project;
-  onEnquire: (projectId: string) => void;
-}
-
-const ProjectCard: React.FC<ProjectCardProps> = ({ project, onEnquire }) => {
+const ProjectCard = ({ project, onEnquire }) => {
   const getStatusIcon = () => {
     switch (project.status) {
       case 'completed':

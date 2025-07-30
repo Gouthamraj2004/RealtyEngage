@@ -1,6 +1,4 @@
-import { Project, Enquiry, Feedback, Payment } from '../types';
-
-export const projects: Project[] = [
+export const projects = [
   {
     id: '1',
     title: 'Luxury Residences',
@@ -35,7 +33,7 @@ export const projects: Project[] = [
   }
 ];
 
-export const enquiries: Enquiry[] = [
+export const enquiries = [
   {
     id: '1',
     name: 'Rahul Sharma',
@@ -58,7 +56,7 @@ export const enquiries: Enquiry[] = [
   }
 ];
 
-export const feedback: Feedback[] = [
+export const feedback = [
   {
     id: '1',
     name: 'Amit Kumar',
@@ -83,7 +81,7 @@ export const feedback: Feedback[] = [
   }
 ];
 
-export const payments: Payment[] = [
+export const payments = [
   {
     id: '1',
     projectId: '1',

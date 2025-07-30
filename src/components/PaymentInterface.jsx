@@ -2,13 +2,13 @@ import React, { useState } from 'react';
 import { CreditCard, Building, DollarSign, Calendar, Check, AlertCircle } from 'lucide-react';
 import { projects, payments } from '../data/mockData';
 
-const PaymentInterface: React.FC = () => {
+const PaymentInterface = () => {
   const [selectedProject, setSelectedProject] = useState('');
   const [paymentMethod, setPaymentMethod] = useState('card');
   const [amount, setAmount] = useState('');
   const [isProcessing, setIsProcessing] = useState(false);
 
-  const handlePayment = async (e: React.FormEvent) => {
+  const handlePayment = async (e) => {
     e.preventDefault();
     setIsProcessing(true);
     
@@ -21,7 +21,7 @@ const PaymentInterface: React.FC = () => {
     setAmount('');
   };
 
-  const getStatusIcon = (status: string) => {
+  const getStatusIcon = (status) => {
     switch (status) {
       case 'completed':
         return <Check className="h-4 w-4 text-green-600" />;
@@ -34,7 +34,7 @@ const PaymentInterface: React.FC = () => {
     }
   };
 
-  const getStatusColor = (status: string) => {
+  const getStatusColor = (status) => {
     switch (status) {
       case 'completed':
         return 'bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200';

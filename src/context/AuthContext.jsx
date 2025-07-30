@@ -1,13 +1,6 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
-import { User, AuthState } from '../types';
 
-interface AuthContextType extends AuthState {
-  login: (email: string, password: string) => Promise<boolean>;
-  logout: () => void;
-  register: (userData: Omit<User, 'id' | 'createdAt'>) => Promise<boolean>;
-}
-
-const AuthContext = createContext<AuthContextType | undefined>(undefined);
+const AuthContext = createContext(undefined);
 
 export const useAuth = () => {
   const context = useContext(AuthContext);
@@ -18,7 +11,7 @@ export const useAuth = () => {
 };
 
 // Mock users for demonstration
-const mockUsers: User[] = [
+const mockUsers = [
   {
     id: '1',
     email: 'admin@realtyengage.com',
@@ -41,8 +34,8 @@ const mockUsers: User[] = [
   }
 ];
 
-export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const [authState, setAuthState] = useState<AuthState>({
+export const AuthProvider = ({ children }) => {
+  const [authState, setAuthState] = useState({
     user: null,
     isAuthenticated: false,
     isLoading: true
@@ -68,7 +61,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     }
   }, []);
 
-  const login = async (email: string, password: string): Promise<boolean> => {
+  const login = async (email, password) => {
     setAuthState(prev => ({ ...prev, isLoading: true }));
     
     // Simulate API call
@@ -101,14 +94,14 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     });
   };
 
-  const register = async (userData: Omit<User, 'id' | 'createdAt'>): Promise<boolean> => {
+  const register = async (userData) => {
     setAuthState(prev => ({ ...prev, isLoading: true }));
     
     // Simulate API call
     await new Promise(resolve => setTimeout(resolve, 1000));
     
     // Mock registration
-    const newUser: User = {
+    const newUser = {
       ...userData,
       id: Date.now().toString(),
       createdAt: new Date().toISOString()

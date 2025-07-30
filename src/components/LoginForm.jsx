@@ -2,24 +2,19 @@ import React, { useState } from 'react';
 import { Mail, Lock, Eye, EyeOff, Building2, User, UserCheck } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
 
-interface LoginFormProps {
-  onToggleMode: () => void;
-  isRegisterMode: boolean;
-}
-
-const LoginForm: React.FC<LoginFormProps> = ({ onToggleMode, isRegisterMode }) => {
+const LoginForm = ({ onToggleMode, isRegisterMode }) => {
   const { login, register, isLoading } = useAuth();
   const [formData, setFormData] = useState({
     email: '',
     password: '',
     name: '',
     phone: '',
-    role: 'customer' as 'admin' | 'customer'
+    role: 'customer'
   });
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState('');
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setError('');
 
@@ -45,7 +40,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ onToggleMode, isRegisterMode }) =
     }
   };
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+  const handleChange = (e) => {
     setFormData(prev => ({
       ...prev,
       [e.target.name]: e.target.value

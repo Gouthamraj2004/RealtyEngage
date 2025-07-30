@@ -10,21 +10,21 @@ import EnquiryForm from './components/EnquiryForm';
 import PaymentInterface from './components/PaymentInterface';
 import SupportCenter from './components/SupportCenter';
 
-const AppContent: React.FC = () => {
+const AppContent = () => {
   const { isAuthenticated, user, isLoading } = useAuth();
   const [activeTab, setActiveTab] = useState('projects');
   const [isRegisterMode, setIsRegisterMode] = useState(false);
-  const [selectedProjectId, setSelectedProjectId] = useState<string | undefined>();
+  const [selectedProjectId, setSelectedProjectId] = useState(undefined);
   const [showEnquiryForm, setShowEnquiryForm] = useState(false);
   const [isChatOpen, setIsChatOpen] = useState(false);
 
-  const handleEnquire = (projectId: string) => {
+  const handleEnquire = (projectId) => {
     setSelectedProjectId(projectId);
     setActiveTab('enquiry');
     setShowEnquiryForm(true);
   };
 
-  const handleEnquirySubmit = (enquiry: any) => {
+  const handleEnquirySubmit = (enquiry) => {
     console.log('New enquiry:', enquiry);
     setShowEnquiryForm(false);
     setSelectedProjectId(undefined);

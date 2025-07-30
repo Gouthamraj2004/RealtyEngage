@@ -3,12 +3,7 @@ import { Building2, Menu, X, Sun, Moon, MessageCircle, LogOut, User } from 'luci
 import { useTheme } from '../context/ThemeContext';
 import { useAuth } from '../context/AuthContext';
 
-interface HeaderProps {
-  activeTab: string;
-  setActiveTab: (tab: string) => void;
-}
-
-const Header: React.FC<HeaderProps> = ({ activeTab, setActiveTab }) => {
+const Header = ({ activeTab, setActiveTab }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isProfileOpen, setIsProfileOpen] = useState(false);
   const { theme, toggleTheme } = useTheme();

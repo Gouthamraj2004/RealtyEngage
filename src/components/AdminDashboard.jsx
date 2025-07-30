@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Users, MessageSquare, CreditCard, Building, TrendingUp, Calendar, Search, Filter } from 'lucide-react';
 import { enquiries, feedback, payments, projects } from '../data/mockData';
 
-const AdminDashboard: React.FC = () => {
+const AdminDashboard = () => {
   const [activeSection, setActiveSection] = useState('overview');
 
   const stats = [
@@ -36,7 +36,7 @@ const AdminDashboard: React.FC = () => {
     }
   ];
 
-  const getStatusColor = (status: string) => {
+  const getStatusColor = (status) => {
     switch (status) {
       case 'pending':
         return 'bg-orange-100 dark:bg-orange-900 text-orange-800 dark:text-orange-200';

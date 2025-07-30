@@ -1,20 +1,8 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { MessageCircle, Send, X, Bot, User, Minimize2, Maximize2 } from 'lucide-react';
 
-interface Message {
-  id: string;
-  text: string;
-  sender: 'user' | 'bot';
-  timestamp: Date;
-}
-
-interface ChatBotProps {
-  isOpen: boolean;
-  onToggle: () => void;
-}
-
-const ChatBot: React.FC<ChatBotProps> = ({ isOpen, onToggle }) => {
-  const [messages, setMessages] = useState<Message[]>([
+const ChatBot = ({ isOpen, onToggle }) => {
+  const [messages, setMessages] = useState([
     {
       id: '1',
       text: 'Hello! I\'m your RealtyEngage assistant. How can I help you today? I can provide information about our projects, pricing, amenities, and more!',
@@ -25,7 +13,7 @@ const ChatBot: React.FC<ChatBotProps> = ({ isOpen, onToggle }) => {
   const [inputText, setInputText] = useState('');
   const [isTyping, setIsTyping] = useState(false);
   const [isMinimized, setIsMinimized] = useState(false);
-  const messagesEndRef = useRef<HTMLDivElement>(null);
+  const messagesEndRef = useRef(null);
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
@@ -35,7 +23,7 @@ const ChatBot: React.FC<ChatBotProps> = ({ isOpen, onToggle }) => {
     scrollToBottom();
   }, [messages]);
 
-  const generateBotResponse = (userMessage: string): string => {
+  const generateBotResponse = (userMessage) => {
     const message = userMessage.toLowerCase();
     
     // Project-related queries
@@ -95,7 +83,7 @@ const ChatBot: React.FC<ChatBotProps> = ({ isOpen, onToggle }) => {
   const handleSendMessage = async () => {
     if (!inputText.trim()) return;
 
-    const userMessage: Message = {
+    const userMessage = {
       id: Date.now().toString(),
       text: inputText,
       sender: 'user',
@@ -108,7 +96,7 @@ const ChatBot: React.FC<ChatBotProps> = ({ isOpen, onToggle }) => {
 
     // Simulate AI thinking time
     setTimeout(() => {
-      const botResponse: Message = {
+      const botResponse = {
         id: (Date.now() + 1).toString(),
         text: generateBotResponse(inputText),
         sender: 'bot',
@@ -120,7 +108,7 @@ const ChatBot: React.FC<ChatBotProps> = ({ isOpen, onToggle }) => {
     }, 1000 + Math.random() * 1000);
   };
 
-  const handleKeyPress = (e: React.KeyboardEvent) => {
+  const handleKeyPress = (e) => {
     if (e.key === 'Enter' && !e.shiftKey) {
       e.preventDefault();
       handleSendMessage();

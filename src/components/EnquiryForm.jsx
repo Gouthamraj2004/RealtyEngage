@@ -2,13 +2,7 @@ import React, { useState } from 'react';
 import { Send, User, Mail, Phone, MessageSquare, Building } from 'lucide-react';
 import { projects } from '../data/mockData';
 
-interface EnquiryFormProps {
-  selectedProjectId?: string;
-  onSubmit: (enquiry: any) => void;
-  onClose?: () => void;
-}
-
-const EnquiryForm: React.FC<EnquiryFormProps> = ({ selectedProjectId, onSubmit, onClose }) => {
+const EnquiryForm = ({ selectedProjectId, onSubmit, onClose }) => {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -17,7 +11,7 @@ const EnquiryForm: React.FC<EnquiryFormProps> = ({ selectedProjectId, onSubmit, 
     message: ''
   });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     onSubmit({
       ...formData,
@@ -29,7 +23,7 @@ const EnquiryForm: React.FC<EnquiryFormProps> = ({ selectedProjectId, onSubmit, 
     if (onClose) onClose();
   };
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+  const handleChange = (e) => {
     setFormData(prev => ({
       ...prev,
       [e.target.name]: e.target.value
